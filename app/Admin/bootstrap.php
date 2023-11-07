@@ -64,20 +64,20 @@ Admin::navbar(function (Navbar $navbar) {
 //    ]));
     $method = config('admin.layout.horizontal_menu') ? 'left' : 'right';
 
-    $navbar->$method(
+   /* $navbar->$method(
         <<<HTML
 <ul class="nav navbar-nav">
     <li class="nav-item">
         &nbsp;
         <a style="cursor: pointer" onclick="window.open('https://github.com/jqhph/dcat-admin-demo')">
             <i class="feather icon-github" style="font-size: 1.5rem"></i> DEMO源码下载
-        </a> 
-        &nbsp; &nbsp; 
+        </a>
+        &nbsp; &nbsp;
     </li>
-</ul> 
+</ul>
 HTML
 
-    );
+    );*/
 
     // ajax请求不执行
     if (! Dcat\Admin\Support\Helper::isAjaxRequest()) {

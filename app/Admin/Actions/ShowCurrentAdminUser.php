@@ -52,7 +52,7 @@ class ShowCurrentAdminUser extends Action
     protected function handleHtmlResponse()
     {
         return <<<'JS'
-var $modal = $(target.data('target')); 
+var $modal = $(target.data('target'));
 
 $modal.find('.modal-body').html(response.html)
 $modal.modal('show')
@@ -70,7 +70,7 @@ JS;
         $this->addHtmlClass('btn btn-primary');
 
         // 保存弹窗的ID
-        $this->setHtmlAttribute('data-target', '#'.$this->modalId);
+        $this->setHtmlAttribute('data-target', '#' . $this->modalId);
 
         parent::setupHtmlAttributes();
     }
@@ -86,7 +86,7 @@ JS;
         $html = parent::html();
 
         return <<<HTML
-{$html}        
+{$html}
 <div class="modal fade" id="{$this->modalId}" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">

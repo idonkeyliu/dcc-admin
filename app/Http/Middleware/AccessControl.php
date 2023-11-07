@@ -38,7 +38,7 @@ class AccessControl
             try {
                 Permission::error();
             } catch (HttpException $e) {
-                return Admin::json()->error('对不起，演示站点不支持修改数据。')->send();
+                return Admin::json()->error('对不起，站点暂时不支持修改数据。')->send();
             }
         }
 
