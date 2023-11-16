@@ -14,13 +14,13 @@ class ProductOrders extends Round
     {
         parent::init();
 
-        $this->title('Product Orders');
-        $this->chartLabels(['Finished', 'Pending', 'Rejected']);
+        $this->title('订单&商品');
+        $this->chartLabels(['订单总数', '商品总数']);
         $this->dropdown([
-            '7' => 'Last 7 Days',
-            '28' => 'Last 28 Days',
-            '30' => 'Last Month',
-            '365' => 'Last Year',
+            '1' => '今天',
+            '7' => '最近一周',
+            '30' => '最近一个月',
+            '365' => '最近一年',
         ]);
     }
 
@@ -36,8 +36,8 @@ class ProductOrders extends Round
         switch ($request->get('option')) {
             case '365':
             case '30':
-            case '28':
             case '7':
+            case '1':
             default:
                 // 卡片内容
                 $this->withContent(23043, 14658, 4758);
@@ -73,7 +73,7 @@ class ProductOrders extends Round
      *
      * @return $this
      */
-    public function withContent($finished, $pending, $rejected)
+    public function withContent($finished, $pending)
     {
         return $this->content(
             <<<HTML
@@ -81,7 +81,7 @@ class ProductOrders extends Round
     <div class="chart-info d-flex justify-content-between mb-1 mt-2" >
           <div class="series-info d-flex align-items-center">
               <i class="fa fa-circle-o text-bold-700 text-primary"></i>
-              <span class="text-bold-600 ml-50">Finished</span>
+              <span class="text-bold-600 ml-50">订单总数</span>
           </div>
           <div class="product-result">
               <span>{$finished}</span>
@@ -91,20 +91,10 @@ class ProductOrders extends Round
     <div class="chart-info d-flex justify-content-between mb-1">
           <div class="series-info d-flex align-items-center">
               <i class="fa fa-circle-o text-bold-700 text-warning"></i>
-              <span class="text-bold-600 ml-50">Pending</span>
+              <span class="text-bold-600 ml-50">商品总数</span>
           </div>
           <div class="product-result">
               <span>{$pending}</span>
-          </div>
-    </div>
-
-     <div class="chart-info d-flex justify-content-between mb-1">
-          <div class="series-info d-flex align-items-center">
-              <i class="fa fa-circle-o text-bold-700 text-danger"></i>
-              <span class="text-bold-600 ml-50">Rejected</span>
-          </div>
-          <div class="product-result">
-              <span>{$rejected}</span>
           </div>
     </div>
 </div>

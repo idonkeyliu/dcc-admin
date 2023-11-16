@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use DB;
 use App\Admin\Metrics\Examples\NewDevices;
 use App\Admin\Metrics\Examples\NewUsers;
 use App\Admin\Metrics\Examples\TotalUsers;
@@ -16,28 +17,37 @@ use Illuminate\Routing\Controller;
 
 class GridController extends Controller
 {
-    use PreviewCode;
+    //use PreviewCode;
 
     public function index(Content $content)
     {
         return $content
-            ->header('表格')
-            ->description('表格功能展示')
-            ->body(function (Row $row) {
+            //->header('表格')
+            //->description('表格功能展示')
+            /*->body(function (Row $row) {
                 $row->column(4, new TotalUsers());
                 $row->column(4, new NewUsers());
                 $row->column(4, new NewDevices());
-            })
+            })*/
             ->body($this->grid());
     }
 
-    protected function grid()
+    protected function grid(): Grid
     {
         return new Grid(null, function (Grid $grid) {
-            $grid->number();
+            //$grid->number();
             $grid->column('id')->code()->sortable();
+            $grid->column('version')->sortable();
+            $grid->column('alias')->sortable();
+            $grid->column('created_at')->sortable();
+            $grid->column('name')->sortable();
             $grid->column('label')->explode()->label();
-            $grid->column('progressBar')->progressBar()->sortable();
+            $grid->column('uri')->sortable();
+            $grid->column('cost')->sortable();
+            $grid->column('avatar')->sortable();
+            $grid->column('role_id')->sortable();
+            $grid->column('status')->sortable();
+            /*$grid->column('progressBar')->progressBar()->sortable();
             $grid->column('expand')
                 ->display(Factory::create()->name)
                 ->expand(PostTable::make());
@@ -58,8 +68,8 @@ class GridController extends Controller
                 })
                 ->radio(['PHP', 'JAVA', 'GO', 'C'])
                 ->else()
-                ->display('<i>None</i>');
-
+                ->display('<i>None</i>');*/
+            $grid;
             $grid->disableCreateButton();
             $grid->disableActions();
             $grid->disableBatchDelete();
@@ -68,9 +78,13 @@ class GridController extends Controller
             // 设置表格数据
             $grid->model()->setData($this->generate());
 
-            $grid->tools(function (Grid\Tools $tools) {
+            //$grid->showPagination();
+            //$grid->paginate(10);
+            //$grid->perPages([10, 20, 30, 40, 50]);
+
+            /*$grid->tools(function (Grid\Tools $tools) {
                 $tools->append($this->buildPreviewButton());
-            });
+            });*/
 
             // 过滤器
             $grid->filter(function (Grid\Filter $filter) {
@@ -124,47 +138,30 @@ class GridController extends Controller
      */
     public function generate()
     {
-        $faker = Factory::create();
-
         $data = [];
-
-        for ($i = 0; $i < 10; $i++) {
+        $goods = DB::select('select * from tb_order_good order by create_time desc');
+        foreach ($goods as $i => $good) {
             $data[] = [
-                'id' => $i+1,
-                'label' => str_repeat($faker->name().',', mt_rand(1, 2)),
-                'progressBar' => mt_rand(1, 100),
+                'id' => $good->id,
+                'label' => $good->address,
+                'created_at' => date("Y-m-d H:i:s", $good->create_time),
+                'name' => $good->good_title,
+                'uri' => $good->good_link,
+                'cost' => $good->price,
+                'avatar' => $good->sku_pic_url,
+                'version' => $good->platform,
+                'alias' => $good->order_id . "-". $good->order_no,
+                'role_id' => "{$good->good_id} {$good->good_title} {$good->good_code} {$good->good_link}",
+                'status' => $good->quantity,
                 'switch' => mt_rand(0, 1),
                 'editable' => mt_rand(0, 14),
-                'checkbox' => value(function () use ($faker) {
-                    $values = [];
-                    for ($i = 0; $i < mt_rand(1, 4); $i++) {
-                        $values[] = mt_rand(0, 3);
-                    }
-                    return join(',', $values);
-                }),
+                'checkbox' => "1,2",
                 'radio' => mt_rand(0, 3),
                 'is_new' => mt_rand(0, 1),
                 'is_hot' => mt_rand(0, 1),
-                'published' => mt_rand(0, 1),
             ];
         }
 
-        return $data;
-    }
-
-    /**
-     * 生成假数据
-     *
-     * @return array
-     */
-    protected function genernateNames()
-    {
-        $faker = Factory::create();
-
-        $data = [];
-        for ($i = 0; $i < 15; $i++) {
-            $data[] = $faker->name;
-        }
         return $data;
     }
 }

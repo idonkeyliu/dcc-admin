@@ -1,18 +1,18 @@
 <?php
 
 return [
-    [
+    /*[
         'id'        => 'layout',
         'title'     => '布局',
         'icon'      => 'fa-cubes',
         'uri'       => 'layout',
         'parent_id' => 0,
-    ],
+    ],*/
 
     /////////////////////////////////////////////////////
     [
         'id'        => 'tables',
-        'title'     => '列表',
+        'title'     => '交易',
         'icon'      => 'feather icon-grid',
         'uri'       => '',
         'parent_id' => 0,
@@ -20,13 +20,13 @@ return [
 
     [
         'id'        => 'grid',
-        'title'     => '默认表格',
+        'title'     => '订单表',
         'icon'      => 'feather icon-menu',
         'uri'       => 'components/grid',
         'parent_id' => 'tables',
     ],
 
-    [
+   /* [
         'id'        => 'reports',
         'title'     => '组合表头',
         'icon'      => 'feather icon-menu',
@@ -81,10 +81,10 @@ return [
         'icon'      => 'feather icon-menu',
         'uri'       => 'row-space',
         'parent_id' => 'tables',
-    ],
+    ],*/
     ///////////////////////////////
 
-    [
+    /*[
         'id'        => 'form',
         'title'     => '表单',
         'icon'      => 'feather icon-edit',
@@ -327,5 +327,5 @@ return [
     //    'icon'      => '',
     //    'uri'       => 'extensions/ueditor',
     //    'parent_id' => 'editor',
-    //],
+    //],*/
 ];

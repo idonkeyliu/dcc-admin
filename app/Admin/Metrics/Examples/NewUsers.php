@@ -10,7 +10,7 @@ class NewUsers extends Line
     /**
      * @var string
      */
-    protected $label = 'New Users';
+    protected $label = '下单用户';
 
     /**
      * 初始化卡片内容
@@ -23,10 +23,10 @@ class NewUsers extends Line
 
         $this->title($this->label);
         $this->dropdown([
-            '7' => 'Last 7 Days',
-            '28' => 'Last 28 Days',
-            '30' => 'Last Month',
-            '365' => 'Last Year',
+            '1' => '今天',
+            '7' => '最近一周',
+            '30' => '最近一个月',
+            '365' => '最近一年',
         ]);
     }
 
@@ -60,14 +60,14 @@ class NewUsers extends Line
                 $this->withChart(collect($generator(30))->toArray());
                 // 直线
                 break;
-            case '28':
+            case '7':
                 // 卡片内容
                 $this->withContent(mt_rand(400, 1000).'k');
                 // 图表数据
                 $this->withChart(collect($generator(28))->toArray());
                 // 直线
                 break;
-            case '7':
+            case '1':
             default:
                 // 卡片内容
                 $this->withContent('89.2k');

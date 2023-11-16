@@ -7,7 +7,7 @@ use Dcat\Admin\Widgets\Metrics\Donut;
 
 class NewDevices extends Donut
 {
-    protected $labels = ['Desktop', 'Mobile'];
+    protected $labels = ['淘宝', '小红书', '拼多多', '抖店'];
 
     /**
      * 初始化卡片内容
@@ -17,10 +17,10 @@ class NewDevices extends Donut
         parent::init();
 
         $color = Admin::color();
-        $colors = [$color->primary(), $color->alpha('blue2', 0.5)];
+        $colors = [$color->primary(), $color->alpha('blue2', 0.5), $color->alpha('blue2', 0.5), $color->alpha('blue2', 0.5)];
 
-        $this->title('New Devices');
-        $this->subTitle('Last 30 days');
+        $this->title('订单数');
+        $this->subTitle('今天');
         $this->chartLabels($this->labels);
         // 设置图表颜色
         $this->chartColors($colors);
@@ -45,10 +45,10 @@ class NewDevices extends Donut
      */
     public function fill()
     {
-        $this->withContent(44.9, 28.6);
+        $this->withContent(44.9, 28.6, 11, 22);
 
         // 图表数据
-        $this->withChart([44.9, 28.6]);
+        $this->withChart([44.9, 28.6, 11, 22]);
     }
 
     /**
@@ -73,7 +73,7 @@ class NewDevices extends Donut
      *
      * @return $this
      */
-    protected function withContent($desktop, $mobile)
+    protected function withContent($taobao, $xhs, $pdd, $dd)
     {
         $blue = Admin::color()->alpha('blue2', 0.5);
 
@@ -86,13 +86,25 @@ class NewDevices extends Donut
     <div style="width: {$labelWidth}px">
         <i class="fa fa-circle text-primary"></i> {$this->labels[0]}
     </div>
-    <div>{$desktop}</div>
+    <div>{$taobao}</div>
 </div>
 <div class="d-flex pl-1 pr-1" style="{$style}">
     <div style="width: {$labelWidth}px">
         <i class="fa fa-circle" style="color: $blue"></i> {$this->labels[1]}
     </div>
-    <div>{$mobile}</div>
+    <div>{$xhs}</div>
+</div>
+<div class="d-flex pl-1 pr-1" style="{$style}">
+    <div style="width: {$labelWidth}px">
+        <i class="fa fa-circle" style="color: $blue"></i> {$this->labels[2]}
+    </div>
+    <div>{$pdd}</div>
+</div>
+<div class="d-flex pl-1 pr-1" style="{$style}">
+    <div style="width: {$labelWidth}px">
+        <i class="fa fa-circle" style="color: $blue"></i> {$this->labels[3]}
+    </div>
+    <div>{$dd}</div>
 </div>
 HTML
         );

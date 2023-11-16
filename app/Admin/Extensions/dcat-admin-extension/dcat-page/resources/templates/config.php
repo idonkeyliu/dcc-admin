@@ -3,14 +3,14 @@
 return [
     'authors' => [
         [
-            'name'  => 'Your name',
-            'email' => 'Your email',
+            'name'  => 'idonkeyliu',
+            'email' => 'idonkeyliu@gmail.com',
         ],
     ],
     'homepage'    => '',
     'description' => 'Description...',
     'website'     => [
-        'title'       => 'Dcat Page',
+        'title'       => '大橙橙',
         'keywords'    => '',
         'description' => '',
     ],
