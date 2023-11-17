@@ -18,13 +18,13 @@ return [
         'parent_id' => 0,
     ],
 
-    [
+    /*[
         'id'        => 'grid',
         'title'     => '订单表',
         'icon'      => 'feather icon-menu',
         'uri'       => 'components/grid',
         'parent_id' => 'tables',
-    ],
+    ],*/
 
    /* [
         'id'        => 'reports',
@@ -74,14 +74,14 @@ return [
         'icon'      => 'feather icon-menu',
         'uri'       => 'tables/simple-pagination',
         'parent_id' => 'tables',
-    ],
+    ],*/
     [
         'id'        => 'row-space',
-        'title'     => '行间距模式',
+        'title'     => '订单表',
         'icon'      => 'feather icon-menu',
         'uri'       => 'row-space',
         'parent_id' => 'tables',
-    ],*/
+    ],
     ///////////////////////////////
 
     /*[

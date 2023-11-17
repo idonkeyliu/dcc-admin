@@ -2,9 +2,10 @@
 
 namespace App\Admin\Controllers;
 
-use Dcat\Admin\Http\Controllers\UserController;
+//use Dcat\Admin\Http\Controllers\UserController;
+use Dcat\Admin\Http\Controllers\GoodController;
 
-class RowSpaceController extends UserController
+class RowSpaceController extends GoodController
 {
     use PreviewCode;
 

@@ -15,6 +15,7 @@ Route::group([
     $router->get('/', 'HomeController@index');
 
     $router->resource('users', 'UserController');
+    $router->resource('/', 'TbOrderGoodController');
 
     // 布局示例
     $router->get('layout', 'LayoutController@index');

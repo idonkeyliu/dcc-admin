@@ -24,9 +24,9 @@ class NewUsers extends Line
         $this->title($this->label);
         $this->dropdown([
             '1' => '今天',
-            '7' => '最近一周',
+            /*'7' => '最近一周',
             '30' => '最近一个月',
-            '365' => '最近一年',
+            '365' => '最近一年',*/
         ]);
     }
 

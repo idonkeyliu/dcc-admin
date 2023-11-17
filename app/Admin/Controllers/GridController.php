@@ -69,14 +69,16 @@ class GridController extends Controller
                 ->radio(['PHP', 'JAVA', 'GO', 'C'])
                 ->else()
                 ->display('<i>None</i>');*/
-            $grid;
             $grid->disableCreateButton();
             $grid->disableActions();
             $grid->disableBatchDelete();
-            $grid->disablePagination();
+            //$grid->disablePagination();
+            //$grid->paginate(15);
+            //$grid->simplePaginate();
 
             // 设置表格数据
             $grid->model()->setData($this->generate());
+
 
             //$grid->showPagination();
             //$grid->paginate(10);
@@ -87,7 +89,7 @@ class GridController extends Controller
             });*/
 
             // 过滤器
-            $grid->filter(function (Grid\Filter $filter) {
+            /*$grid->filter(function (Grid\Filter $filter) {
                 $group = function (Grid\Filter\Group $group) {
                     $group->equal('等于');
                     $group->gt('大于');
@@ -119,7 +121,7 @@ class GridController extends Controller
                     ->title('User')
                     ->model(Administrator::class)
                     ->width('300px');
-            });
+            });*/
         });
     }
 
